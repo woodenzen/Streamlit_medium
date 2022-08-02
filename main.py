@@ -16,11 +16,11 @@ with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 #Autorefresh:
-count = st_autorefresh(interval=50, limit=100, key="fizzbuzzcounter")
+count = st_autorefresh(interval=500, limit=100, key="fizzbuzzcounter")
 
 #Put your logo here:
 logo = Image.open('resources/Will and Zivon 2.png')
-logo = logo.resize((200, 200))#and make it to whatever size you want.
+logo = logo.resize((160, 160))#and make it to whatever size you want.
 
 
 #Time
@@ -34,8 +34,8 @@ timeMetric.metric("",today)
 # Row A
 a1, a2, a3 = st.columns(3)
 a1.image(logo)
-a2.metric("Moscow Temperature", f"{get_temp()}")
-a3.metric("Moscow time", current_time)
+a2.metric("Moscow, Idaho Temperature", f"{get_temp()}")
+a3.metric("Moscow, Idaho time", current_time)
 
 
 # Row B
@@ -43,7 +43,7 @@ b1, b2, b3, b4 = st.columns(4)
 b1.metric("Humidity", f"{get_humidity()}"+"%")
 b2.metric("Feels like", f"{get_feel()}")
 b3.metric("Highest temperature", f"{get_temp_max()}")
-b4.metric("Lowest temperature", f"{get_temp_min()}")
+b4.metric("Atmospheric pressure", f"{get_pressure()}")
 
 # Row C
 #C1 being the graph, C2 The Table.
