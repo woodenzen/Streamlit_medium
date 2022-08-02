@@ -9,6 +9,7 @@ div.block-container.css-18e3th9.egzxvld2 {
 
 img {
   display: block;
+  align: center;
   /*margin-top: 1.5em;*/
 }
 
@@ -25,7 +26,7 @@ div.css-wnm74r.e16fv1kl3 {
 
 /* Row 1 */
 div.css-1r6slb0.e1tzin5v2 {
-    background-color: rgb(63, 79, 107);
+    background-color: rgb(26, 163, 255);
     padding: 3% 3% 3% 3%;
     border-radius: 5px;
 }

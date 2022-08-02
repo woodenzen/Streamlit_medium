@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pytz
+import arrow 
 from datetime import datetime
 from datetime import date
 from PIL import Image
@@ -9,23 +10,23 @@ from get_weather import *
 from streamlit_autorefresh import st_autorefresh
 
 # Page setting
-st.set_page_config(layout="wide", page_title="Robins cool dash")
+st.set_page_config(layout="wide", page_title="Will's Zettlekasten Dashboard")
 
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 #Autorefresh:
-count = st_autorefresh(interval=5000, limit=100, key="fizzbuzzcounter")
+count = st_autorefresh(interval=50, limit=100, key="fizzbuzzcounter")
 
 #Put your logo here:
-logo = Image.open('resources/monster.png')
-logo = logo.resize((200, 100))#and make it to whatever size you want.
+logo = Image.open('resources/Will and Zivon 2.png')
+logo = logo.resize((200, 200))#and make it to whatever size you want.
 
 
 #Time
 nowTime = datetime.now()
-current_time = nowTime.strftime("%H:%M:%S")
-today = str(date.today())
+current_time = arrow.now('US/Pacific').format('h:mm:ss A') # nowTime.strftime("%I:%M:%S %p")
+today = datetime.today().strftime('%B %d, %Y')
 # st.write(today)
 timeMetric,= st.columns(1)
 timeMetric.metric("",today)
@@ -33,8 +34,8 @@ timeMetric.metric("",today)
 # Row A
 a1, a2, a3 = st.columns(3)
 a1.image(logo)
-a2.metric("Stockholm Temperature", f"{get_temp()}", f"{temp_difference()}"+"%")
-a3.metric("Stockholm time", current_time)
+a2.metric("Moscow Temperature", f"{get_temp()}")
+a3.metric("Moscow time", current_time)
 
 
 # Row B

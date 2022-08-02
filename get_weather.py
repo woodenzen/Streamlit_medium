@@ -1,23 +1,35 @@
-import requests
+from urllib.request import urlopen
 import json
 
-api_key = 'YOUR_API_KEY'
+api_key = '6ea23923b64d0a887f767d1e271567e9'
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
-city_name = "Stockholm"
-complete_url = base_url + "appid=" + api_key + "&q=" + city_name + "&units=metric"
-response = requests.get(complete_url)
-x = response.json()
+city_name = "moscow"
+state_id = "id"
+country_code = "us"
+complete_url = base_url + "&q=" + city_name + "," + state_id + "," + country_code + "&appid=" + api_key + "&units=imperial" + "&city.sun.rise" + "&city.sun.set"
+url = complete_url
+  
+# store the response of URL
+response = urlopen(url)
+  
+# storing the JSON response 
+# from url in data
+data_json = json.loads(response.read())
+  
+# print the json response
+print(data_json)
+x = data_json
 
 #GLOBALS
 
 y = x["main"]
 print(y)
-current_temp = y["temp"]
+current_temp = round((y["temp"]))
 max_temp = round((y["temp_max"]))
 min_temp = round(y["temp_min"])
 humidity = y["humidity"]
 pressure = y["pressure"]
-feels = y["feels_like"]
+feels = round((y["feels_like"]))
 previous_temp = 23
 
 def temp_difference():
@@ -44,15 +56,15 @@ def temp_difference():
 
 
 def get_temp():
-    return(str(current_temp)+" °C")
+    return(str(current_temp)+" °F")
 
 
 def get_temp_min():
-    return(str(min_temp)+" °C")
+    return(str(min_temp)+" °F")
 
 
 def get_temp_max():
-    return(str(max_temp)+" °C")
+    return(str(max_temp)+" °F")
 
 def get_humidity():
     return(str(humidity))
@@ -61,4 +73,4 @@ def get_pressure():
     return(str(pressure))
 
 def get_feel():
-    return(str(feels)+"°C")
+    return(str(feels)+"°F")
