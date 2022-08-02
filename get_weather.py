@@ -1,7 +1,8 @@
 from urllib.request import urlopen
 import json
+from variables import *
 
-api_key = '6ea23923b64d0a887f767d1e271567e9'
+
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
 city_name = "moscow"
 state_id = "id"
